@@ -1,0 +1,16 @@
+[Unit]
+Description=Sample React and FastAPI TODO App FRONTEND service
+After=mm-todo-api.service
+
+[Service]
+ExecStart=yarn start
+Type=simple
+User={{User}}
+WorkingDirectory={{WorkingDir}}
+KillMode=process
+KillSignal=SIGTERM
+TimeoutStopSec=5min
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
