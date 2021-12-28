@@ -1,0 +1,19 @@
+[Unit]
+Description=Sample React and FastAPI TODO App API service
+After=network.target
+
+[Service]
+Environment="PATH={{WorkingDir}}/venv/bin"
+WorkingDirectory={{WorkingDir}}
+ExecStart={{WorkingDir}}/venv/bin/python {{WorkingDir}}/main.py
+#ExecStop=
+Type=simple
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=mm-todo-api
+User={{User}}
+#WorkingDirectory=/home/marko/repos/react-fastapi-spa-example/frontend
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
