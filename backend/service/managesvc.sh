@@ -45,8 +45,11 @@ fi
 function install()
 {
     echo "Creating service in ${UNIT_PATH}"
-    if [ -f "${UNIT_PATH}" ]; then
-        failed "error: exists ${UNIT_PATH}"
+    if service_exists; then
+        echo "Service ${SVC_NAME} exists already, will redeploy"
+        stop
+        systemctl disable ${SVC_NAME} || failed "failed to disable ${SVC_NAME}"
+        rm "${UNIT_PATH}" || failed "failed to delete ${UNIT_PATH}"
     fi
 
     if [ -f "${TEMP_PATH}" ]; then

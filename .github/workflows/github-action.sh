@@ -9,7 +9,7 @@ function setup_backend_service()
 	pip-sync requirements.txt
 	deactivate
 	cd service
-	./managesvc.sh install marko
+	sudo ./managesvc.sh install marko
 	cd ~/repos/react-fastapi-spa-example
 }
 
@@ -19,7 +19,7 @@ function setup_frontend_service()
 	yarn
 	yarn build
 	cd service
-	./managesvc.sh install marko
+	sudo ./managesvc.sh install marko
 	cd ~/repos/react-fastapi-spa-example
 }
 
