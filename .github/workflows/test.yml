@@ -11,8 +11,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  redeploy-app:
     runs-on: [self-hosted, sbox02]
+    environment: sandbox
     steps:
-    - uses: actions/checkout@v2
-    - run: echo "I'm in $GITHUB_WORKSPACE" > ~/gh_act.txt
+    - id: prep-git-repos
+    - run: |
+        cd ~/repos
+        if [ -d ~/repos/react-fastapi-spa-example ]; then
+          cd ~/repos/react-fastapi-spa-example
+          git clean -Xdf
+          git clean -df
+          git pull
+        else
+          git clone https://${{ secrets.USER_PAT }}@github.com/mtrmarko/react-fastapi-spa-example.git
+          cd ~/repos/react-fastapi-spa-example
+        fi
+    - id: redeploy-and-start-app-services
+    - run: |
+        cd ~/repos/react-fastapi-spa-example/.github/workflows/
+        ./github_action.sh
