@@ -28,6 +28,4 @@ jobs:
           cd ~/repos/react-fastapi-spa-example
         fi
     - name: redeploy-and-start-app-services
-      run: |
-        cd ~/repos/react-fastapi-spa-example/.github/workflows/
-        ./github_action.sh
+      run: ~/repos/react-fastapi-spa-example/.github/workflows/github_action.sh
