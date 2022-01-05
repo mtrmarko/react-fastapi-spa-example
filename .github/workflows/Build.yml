@@ -5,9 +5,9 @@ name: Build
 
 on:
   push:
-    branches: [ main ]
+    branches: ${{ secrets.GH_ACTION_BRANCH }}
   pull_request:
-    branches: [ main ]
+    branches: ${{ secrets.GH_ACTION_BRANCH }}
   workflow_dispatch:
 
 jobs:
