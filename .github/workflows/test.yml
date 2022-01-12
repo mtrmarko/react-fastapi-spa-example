@@ -1,0 +1,4 @@
+        - name: Print event data
+          env:
+            EVENT: ${{ toJSON( github.event ) }}
+          run: echo "$EVENT"
